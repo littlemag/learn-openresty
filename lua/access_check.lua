@@ -1,3 +1,4 @@
+--========== {$prefix}/lua/access_check.lua
 local param= require("comm.param")
 local args = ngx.req.get_uri_args()
 
