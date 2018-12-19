@@ -1,15 +1,14 @@
-local args = ngx.req.get_uri_args()
-local redis= require "redis"
-local cjson = require "cjson"
+local switch = {
+     get = function (key)
+         local res = {}
+         local data,err = red:get(key)
+         res[key] = data
+         return res,err
+     end,
+     
+     set = function (key,value)
+     	local data,err = red:sget(key,value)
+     	return data,err	 	
+     end
 
-key = args.key
-ngx.say(key)
-res, err = redis.connect:get(param)
-
-if not res then
-    ngx.say("failed to get redis: ", err)
-    return
-end
-array = {}
-array[key] = res
-ngx.say(cjson.encode(array))
+}
