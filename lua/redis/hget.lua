@@ -1,6 +1,7 @@
 local redis_common = require("redis.redis_common")
 local args = ngx.req.get_uri_args()
-local key = args.param
+local key = args.key
+local field = args.field
 
-local content = hgetall_content(key)
+local content = hget_content(key,field)
 ngx.say(content)
